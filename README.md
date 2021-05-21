@@ -1,4 +1,4 @@
-<h1>HRMS (Human Resources Management System)</h1>
+<h1>HRMS (Human Resource Management System)</h1>
 <ul><li>
 <a href="https://github.com/kbsenay/HRMS-Project/tree/main/hrms/src/main/java/kodlama/io/hrms" target="_blank">
 Main Directory 
