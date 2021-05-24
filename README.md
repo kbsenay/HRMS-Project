@@ -6,7 +6,7 @@ Main Directory
   </li>
   <li><a href="https://github.com/kbsenay/HRMS-Project/blob/main/HRMS%20SQL.sql" target="_blank">
 PostgreSQL Database Codes 
-</a>(Click this to see SQL codes)
+</a>(Click this to see SQL codes) (UPDATED)
   </li>
   
 </ul><br>
