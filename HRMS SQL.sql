@@ -82,3 +82,20 @@ CREATE TABLE public.job_positions(
 	CONSTRAINT pk_job_positions PRIMARY KEY(id),
 	CONSTRAINT uc_job_positions_position UNIQUE(position)
 );
+
+DROP TABLE public.verification_codes_candidates;
+DROP TABLE public.verification_codes_employers;
+
+ALTER TABLE public.users ADD is_active boolean;
+ALTER TABLE public.employees ADD is_active boolean;
+ALTER TABLE public.employers ADD is_active boolean;
+ALTER TABLE public.candidates ADD is_active boolean;
+
+ALTER TABLE public.users
+    ALTER COLUMN is_active SET NOT NULL;
+ALTER TABLE public.employees
+    ALTER COLUMN is_active SET NOT NULL;
+ALTER TABLE public.employers
+    ALTER COLUMN is_active SET NOT NULL;
+ALTER TABLE public.candidates
+    ALTER COLUMN is_active SET NOT NULL;
