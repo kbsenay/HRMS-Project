@@ -9,31 +9,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlama.io.hrms.business.abstracts.JobPositionService;
+import kodlama.io.hrms.business.abstracts.UserService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.JobPosition;
+import kodlama.io.hrms.entities.concretes.User;
 
 @RestController
-@RequestMapping("/api/jobpositions")
-public class JobPositionsController {
-	
-	private JobPositionService jobPositionService;
+@RequestMapping("/api/users")
+public class UsersController {
+	private UserService userService;
 	
 	@Autowired
-	public JobPositionsController(JobPositionService jobPositionService) {
+	public UsersController(UserService userService) {
 		super();
-		this.jobPositionService = jobPositionService;
-	}
-
-	@GetMapping("/getall")
-	public DataResult<List<JobPosition>> getAll(){
-		return this.jobPositionService.getAll();
+		this.userService = userService;
 	}
 	
-	@PostMapping("/add")
-	public Result add(@RequestBody JobPosition jobPosition) {
-		return this.jobPositionService.add(jobPosition);
+	@GetMapping("/getall")
+	public DataResult<List<User>> getAll(){
+		return this.userService.getAll();
 	}
+	
+	
+	@PostMapping("/add")
+	public Result add(@RequestBody User user) {
+		return this.userService.add(user);
+	}
+
 
 }
