@@ -12,7 +12,9 @@ import kodlama.io.hrms.business.abstracts.EmployerService;
 import kodlama.io.hrms.business.abstracts.UserService;
 import kodlama.io.hrms.business.abstracts.VerificationCodeService;
 import kodlama.io.hrms.core.adapters.UserCheckService;
+import kodlama.io.hrms.core.utilities.results.ErrorResult;
 import kodlama.io.hrms.core.utilities.results.Result;
+import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.core.utilities.verification.VerificationService;
 import kodlama.io.hrms.entities.concretes.Candidate;
 import kodlama.io.hrms.entities.concretes.Employer;
@@ -38,13 +40,27 @@ public class AuthManager implements AuthService {
 		this.candidateService = candidateService;
 		this.verificationService = verificationService;
 		this.userCheckService = userCheckService;
-		this.verificationCodeService = verificationCodeService;
+		this.verificationCodeService = verificationCodeService;  
 	}
 
 	@Override 
 	public Result registerEmployer(Employer employer, String confirmedPassword) { 
-		// TODO Auto-generated method stub 
-		return null; 
+		if (!checkIfNullInfoForEmployer(employer, confirmedPassword)) {
+			return new ErrorResult("Eksik giriş yaptınız!");
+		}else if (checkIfEqualEmailAndDomain(employer.getEmail(), employer.getWebAddress()) 
+				&& checkIfEmailExists(employer.getEmail()) 
+				&& checkIfEqualPasswordAndConfirmPassword(employer.getPassword(), confirmedPassword)) {
+			return new SuccessResult("İşveren kaydı başarılı!");
+		}
+		var result = this.employerService.add(employer);
+		
+		if (result.isSuccess()) {
+			String code = this.verificationService.codeGenerator();
+			this.verificationService.sendCode(code);
+			verificationCodeRecord(code, employer.getId(), employer.getEmail());
+			return new SuccessResult("Doğrulama başarılı");
+		}
+		return null;
 		}
 
 	@Override 

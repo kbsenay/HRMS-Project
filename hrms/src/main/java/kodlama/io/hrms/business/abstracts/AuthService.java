@@ -5,9 +5,11 @@
   kodlama.io.hrms.entities.concretes.Candidate; import
   kodlama.io.hrms.entities.concretes.Employer;
   
-  public interface AuthService { Result registerEmployer(Employer employer,String confirmedPassword); 
+  public interface AuthService { 
+	  Result registerEmployer(Employer employer,String confirmedPassword); 
   
-  Result registerCandidate(Candidate candidate, String confirmedPassword);
+	  Result registerCandidate(Candidate candidate, String confirmedPassword);
+  
   
   }
  

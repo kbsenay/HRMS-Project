@@ -11,7 +11,7 @@ import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.UserDao;
-import kodlama.io.hrms.entities.concretes.User;
+import kodlama.io.hrms.entities.abstracts.User;
 
 @Service
 public class UserManager implements UserService {
