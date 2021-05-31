@@ -1,11 +1,12 @@
 package kodlama.io.hrms.core.adapters;
 
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import mernisService.FakeMernisService;
 
-@Service
+@Component
 public class MernisServiceAdapter implements UserCheckService {
 
 	@Override

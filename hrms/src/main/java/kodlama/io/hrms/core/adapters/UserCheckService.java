@@ -5,6 +5,6 @@ public interface UserCheckService {
 	boolean checkIfRealPersonIs(long nationalityId, 
 			String firstName, 
 			String lastName, 
-			int yearofBirth);
+			int yearOfBirth);
 
 }

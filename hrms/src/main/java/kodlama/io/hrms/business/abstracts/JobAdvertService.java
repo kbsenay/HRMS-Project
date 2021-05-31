@@ -12,13 +12,13 @@ public interface JobAdvertService {
 	Result add(JobAdvert jobAdvert);
 	
 	
-	DataResult<List<JobAdvert>> getAllByIsActiveTrue(boolean isActive);
+	DataResult<List<JobAdvert>> getAllByIsActiveTrue();
 	
 	
-	DataResult<List<JobAdvert>> getAllByIsActiveTrueAndPublishedAtDesc(boolean isActive, LocalDate publishedAt);
+	DataResult<List<JobAdvert>> getAllByIsActiveTrueAndPublishedAtDesc();
 	
 	
-	DataResult<List<JobAdvert>> getActiveJobAdvertByEmployer(boolean isActive, int employerId);
+	DataResult<List<JobAdvert>> getActiveJobAdvertByEmployer(int employerId);
 	
 	
 	DataResult<List<JobAdvert>> getAllByDeadline(LocalDate deadline);

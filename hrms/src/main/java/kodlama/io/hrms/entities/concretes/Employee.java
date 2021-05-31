@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import kodlama.io.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="employees")
-@PrimaryKeyJoinColumn(name="user_id",referencedColumnName = "id")
+@PrimaryKeyJoinColumn(name="user_id")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee extends User {
@@ -30,7 +31,6 @@ public class Employee extends User {
 	private String firstName;
 	@Column(name="last_name")
 	private String LastName;
-	@Column(name="is_active",columnDefinition = "boolean default false")
-	private Boolean isActive = false;;
+	
 
 }

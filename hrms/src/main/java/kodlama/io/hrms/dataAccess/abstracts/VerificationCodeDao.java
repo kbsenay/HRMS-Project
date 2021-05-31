@@ -6,7 +6,7 @@
   import kodlama.io.hrms.entities.concretes.VerificationCode;
   
   public interface VerificationCodeDao extends JpaRepository<VerificationCode,Integer> {
-	  VerificationCode findByUserIdAndVerificationCode(int userId,String verificationCode);
+	  VerificationCode findByUserIdAndCode(int userId, String code);
   
   }
  

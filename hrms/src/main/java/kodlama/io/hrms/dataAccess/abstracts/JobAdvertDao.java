@@ -10,17 +10,17 @@ import kodlama.io.hrms.entities.concretes.JobAdvert;
 
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer>{
 	
-	@Query("From JobAdvert where isActive = true")
-	List<JobAdvert> getAllByIsActiveTrue(boolean isActive);
+	//@Query("From JobAdvert where isActive = true")
+	List<JobAdvert> getByIsActiveTrue();
 	
-	@Query("From JobAdvert where isActive = true and Order By publishedAt Desc ")
-	List<JobAdvert> getAllByIsActiveTrueAndPublishedAtDesc(boolean isActive, LocalDate publishedAt);
+	//@Query("From JobAdvert where isActive = true and Order By publishedDate=: published Desc ")
+	List<JobAdvert> getByIsActiveTrueOrderByPublishedDateDesc();
 	
-	@Query("From JobAdvert where isActive = true and employer_id =: id")
-	List<JobAdvert> getActiveJobAdvertByEmployer(boolean isActive, int employerId);
+	//@Query("From JobAdvert where isActive = true and employer_id =: id")
+	List<JobAdvert> getByEmployer_IdAndIsActiveTrue(int employerId);
 	
-	@Query("From JobAdvert where deadline =: deadline and employerId =: employerId")
-	List<JobAdvert> getAllByDeadline(LocalDate deadline);
+	//@Query("From JobAdvert where deadline =: deadline and employerId =: employerId")
+	List<JobAdvert> getByDeadline(LocalDate deadline);
 
 	
 	

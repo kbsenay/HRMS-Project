@@ -34,6 +34,7 @@ public class AuthManager implements AuthService {
 	public AuthManager(UserService userService, EmployerService employerService, CandidateService candidateService,
 			VerificationService verificationService, UserCheckService userCheckService,
 			VerificationCodeService verificationCodeService) {
+		
 		super();
 		this.userService = userService;
 		this.employerService = employerService;
@@ -43,6 +44,7 @@ public class AuthManager implements AuthService {
 		this.verificationCodeService = verificationCodeService;  
 	}
 
+	//Register Employer
 	@Override 
 	public Result registerEmployer(Employer employer, String confirmedPassword) { 
 		if (!checkIfNullInfoForEmployer(employer, confirmedPassword)) {
@@ -60,13 +62,30 @@ public class AuthManager implements AuthService {
 			verificationCodeRecord(code, employer.getId(), employer.getEmail());
 			return new SuccessResult("Doğrulama başarılı");
 		}
-		return null;
+		return new ErrorResult("Lütfen tekrar deneyin!");
 		}
 
+	//Register Candidate
 	@Override 
 	public Result registerCandidate(Candidate candidate, String confirmedPassword) { 
-		// TODO Auto-generated method stub 
-		return null; 
+		if (!checkIfNullInfoForCandidate(candidate, confirmedPassword)) {
+			return new ErrorResult("Eksik giriş yaptınız!");
+		}else if (checkNationalIdentity(candidate.getIdentityNumber())
+				&& checkIfIdentityNumberExists(0, confirmedPassword, confirmedPassword, 0)
+				&& checkIfEmailExists(confirmedPassword)
+				&& checkIfEqualPasswordAndConfirmPassword(candidate.getPassword(), confirmedPassword)) {
+			return new SuccessResult("İş arayan kaydı başarılı");
+		}
+		
+		var result = this.candidateService.add(candidate);
+		
+		if (result.isSuccess()) {
+			String code = this.verificationService.codeGenerator();
+			this.verificationService.sendCode(code);
+			verificationCodeRecord(code, candidate.getId(), candidate.getEmail());
+			return new SuccessResult("Doğrulama başarılı");
+		}
+		return new ErrorResult("Lütfen tekrar deneyin!"); 
 	}
 
 	// ----------- business rules -------------
@@ -112,8 +131,11 @@ public class AuthManager implements AuthService {
 
 	private boolean checkIfIdentityNumberExists(long identityNumber, String
 					firstName, String lastName, int yearOfBirth) { if
-				(userCheckService.checkIfRealPersonIs(identityNumber, firstName, lastName,
-						yearOfBirth)) { return true; } return false; }
+				(userCheckService.checkIfRealPersonIs(identityNumber, firstName, lastName,yearOfBirth)) {
+						return true; 
+					} 
+					return false; 
+					}
 
 	// Common Validation 
 	private boolean checkIfEmailExists(String email) {

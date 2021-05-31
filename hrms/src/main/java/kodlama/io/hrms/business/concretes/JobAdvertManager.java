@@ -33,27 +33,27 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
-	public DataResult<List<JobAdvert>> getAllByIsActiveTrue(boolean isActive) {
+	public DataResult<List<JobAdvert>> getAllByIsActiveTrue() {
 		return new SuccessDataResult<List<JobAdvert>>
-		(this.jobAdvertDao.getAllByIsActiveTrue(isActive), "Tüm güncel iş ilânları listelendi!");
+		(this.jobAdvertDao.getByIsActiveTrue(), "Tüm güncel iş ilânları listelendi!");
 	}
 
 	@Override
-	public DataResult<List<JobAdvert>> getAllByIsActiveTrueAndPublishedAtDesc(boolean isActive, LocalDate publishedAt) {
+	public DataResult<List<JobAdvert>> getAllByIsActiveTrueAndPublishedAtDesc() {
 		return new SuccessDataResult<List<JobAdvert>>
-		(this.jobAdvertDao.getAllByIsActiveTrueAndPublishedAtDesc(isActive, publishedAt), "Son yayımlanan güncel iş ilânları listelendi!");
+		(this.jobAdvertDao.getByIsActiveTrueOrderByPublishedDateDesc(), "Son yayımlanan güncel iş ilânları listelendi!");
 	}
 
 	@Override
-	public DataResult<List<JobAdvert>> getActiveJobAdvertByEmployer(boolean isActive, int employerId) {
+	public DataResult<List<JobAdvert>> getActiveJobAdvertByEmployer(int employerId) {
 		return new SuccessDataResult<List<JobAdvert>>
-		(this.jobAdvertDao.getActiveJobAdvertByEmployer(isActive, employerId), "Firmanın güncel ilânları listelendi");
+		(this.jobAdvertDao.getByEmployer_IdAndIsActiveTrue(employerId), "Firmanın güncel ilânları listelendi");
 	}
 
 	@Override
 	public DataResult<List<JobAdvert>> getAllByDeadline(LocalDate deadline) {
 		return new SuccessDataResult<List<JobAdvert>>
-		(this.jobAdvertDao.getAllByDeadline(deadline));
+		(this.jobAdvertDao.getByDeadline(deadline));
 	}
 
 }
