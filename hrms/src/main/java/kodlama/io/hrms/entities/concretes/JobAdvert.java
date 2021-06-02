@@ -1,6 +1,7 @@
 package kodlama.io.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +44,7 @@ public class JobAdvert {
 	private int vacantPosition; //zorunlu
 	
 	@Column(name="deadline")
-	private LocalDate deadline;
+	private Date deadline;
 	
 	@Column(name="is_active")
 	private boolean isActive;
@@ -50,7 +53,8 @@ public class JobAdvert {
 	private boolean isDeleted=false;
 	
 	@Column(name="published_date", columnDefinition = "Date default CURRENT_DATE")
-	private LocalDate publishedDate = LocalDate.now();
+	@Temporal(TemporalType.DATE)
+	private Date publishedDate;
 	
 	@ManyToOne
 	@JoinColumn(name="employer_id")

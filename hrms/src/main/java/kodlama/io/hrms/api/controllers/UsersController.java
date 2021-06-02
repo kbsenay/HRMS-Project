@@ -15,7 +15,7 @@ import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.abstracts.User;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping(value ="/api/users")
 public class UsersController {
 	private UserService userService;
 	
@@ -25,13 +25,13 @@ public class UsersController {
 		this.userService = userService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping(value= "/getall")
 	public DataResult<List<User>> getAll(){
 		return this.userService.getAll();
 	}
 	
 	
-	@PostMapping("/add")
+	@PostMapping(value = "/add")
 	public Result add(@RequestBody User user) {
 		return this.userService.add(user);
 	}
