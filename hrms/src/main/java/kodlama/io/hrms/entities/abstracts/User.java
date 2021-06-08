@@ -1,6 +1,5 @@
 package kodlama.io.hrms.entities.abstracts;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +12,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,9 +36,14 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
+	@Email
+	@NotBlank
+	@NotNull
 	@Column(name="email")
 	private String email;
 	
+	@NotBlank
+	@NotNull
 	@Column(name="password")
 	private String password;
 	
