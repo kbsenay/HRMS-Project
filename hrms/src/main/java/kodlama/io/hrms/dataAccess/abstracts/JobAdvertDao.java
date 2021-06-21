@@ -21,6 +21,8 @@ public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer>{
 	
 	//@Query("From JobAdvert where deadline =: deadline and employerId =: employerId")
 	List<JobAdvert> getByDeadline(LocalDate deadline);
+	
+	JobAdvert findAllByIdAndIsActiveTrue(int id);
 
 	
 	

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kodlama.io.hrms.business.abstracts.JobAdvertService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
@@ -31,6 +33,10 @@ public class JobAdvertsController {
 		this.jobAdvertService = jobAdvertService;
 	}
 	
+	@GetMapping("getByJobAdvertId")
+    public DataResult<JobAdvert> getByJobAdvertId(@RequestParam int id){
+		return this.jobAdvertService.getByJobAdvertId(id);}
+	
 	@GetMapping("/getAllByIsActiveTrue")
 	public DataResult<List<JobAdvert>>getAllByIsActiveTrue(){
 		return this.jobAdvertService.getAllByIsActiveTrue();
@@ -45,6 +51,11 @@ public class JobAdvertsController {
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody JobAdvert jobAdvert){
 		return this.jobAdvertService.add(jobAdvert);
+	}
+	
+	@PostMapping("/uploadImage")
+	public Result saveImage(@RequestBody MultipartFile file, @RequestParam int jobAdvertId) {
+		return this.jobAdvertService.saveImage(file, jobAdvertId);
 	}
 
 }

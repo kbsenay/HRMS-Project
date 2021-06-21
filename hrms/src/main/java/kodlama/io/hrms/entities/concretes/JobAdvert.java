@@ -33,15 +33,18 @@ public class JobAdvert {
 	@Column(name="job_description")
 	private String jobDescription; //zorunlu
 	
+	@Column(name="min_salary")
+	private int minSalary;
 	
 	@Column(name="max_salary")
 	private int maxSalary;
 	
-	@Column(name="min_salary")
-	private int minSalary;
-	
 	@Column(name="vacant_position")
 	private int vacantPosition; //zorunlu
+	
+	@Column(name="published_date", columnDefinition = "Date default CURRENT_DATE")
+	@Temporal(TemporalType.DATE)
+	private Date publishedDate;
 	
 	@Column(name="deadline")
 	private Date deadline;
@@ -52,9 +55,10 @@ public class JobAdvert {
 	@Column(name="is_deleted", columnDefinition = "boolean default false")
 	private boolean isDeleted=false;
 	
-	@Column(name="published_date", columnDefinition = "Date default CURRENT_DATE")
-	@Temporal(TemporalType.DATE)
-	private Date publishedDate;
+	@Column(name="photo")
+	private String photo = "https://res.cloudinary.com/kbsenay/image/upload/v1624299200/HRMSProject/RES%C4%B0M_YOK1_lmh9np.jpg";
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name="employer_id")

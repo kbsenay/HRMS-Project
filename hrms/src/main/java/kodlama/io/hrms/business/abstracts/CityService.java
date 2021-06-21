@@ -8,6 +8,7 @@ import kodlama.io.hrms.entities.concretes.City;
 
 public interface CityService {
 	
+	DataResult<City> getById(int id);
 	DataResult<List<City>> getAll();
 	
 	Result add(City city);

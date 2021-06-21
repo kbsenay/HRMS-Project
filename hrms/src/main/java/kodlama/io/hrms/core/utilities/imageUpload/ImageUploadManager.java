@@ -3,6 +3,7 @@ package kodlama.io.hrms.core.utilities.imageUpload;
 import java.io.IOException;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,7 @@ public class ImageUploadManager implements ImageUploadService {
 	
 	private Cloudinary cloudinary;
 
+	@Autowired
 	public ImageUploadManager() {
 		this.cloudinary = new Cloudinary(ObjectUtils.asMap(
 			"cloud_name", "kbsenay",
